@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PembeliController;
+use Illuminate\Http\Request;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +37,7 @@ Route::get('/pembayaran', function () {
     return view('layout.transaksi');
 });
 
-Route::get('/pembeli', function () {
-    return view('layout.pembeli');
-});
+// Route::get('/pembeli', function () {
+//     return view('layout.pembeli');
+// });
+Route::resource('/pembeli', PembeliController::class);
