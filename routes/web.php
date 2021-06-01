@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\SupplierController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,9 +16,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('layout.home');
-});
+// Route::get('/', function () {
+//     return view('layout.home');
+// });
 
 // BARANG
 Route::get('/barang', [BarangController::class, 'index'])->name('barang');
@@ -52,3 +53,7 @@ Route::get('/pembayaran', function () {
 Route::get('/pembeli', function () {
     return view('layout.pembeli');
 });
+
+Auth::routes();
+
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
