@@ -11,6 +11,13 @@
       </div>
     @endif
 
+    {{-- search --}}
+    <p>Cari Barang :</p>
+    <form action="/barang/cari" method="GET">
+        <input type="text" name="cari" placeholder="Cari Barang .." value="{{ old('cari') }}">
+        <input type="submit" value="CARI">
+    </form>
+
     <div class="box-body">
         <table class="table table-striped table-hover">
             <thead class=" bg-light-blue-active">

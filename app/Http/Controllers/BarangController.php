@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\BarangModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BarangController extends Controller
 {
@@ -82,5 +83,25 @@ class BarangController extends Controller
     public function delete($id_barang){
         $this->BarangModel->deleteData($id_barang);
         return redirect()->route('barang')->with('pesan','Data Berhasil Dihapus');
+    }
+
+    // Search data
+    public function cari(Request $request){
+        // menangkap data pencarian
+		$cari = $request->cari;
+
+        // mengambil data dari table pegawai sesuai pencarian data
+        $data = [
+            'barang' => DB::table('barang')
+            ->join('supplier', 'supplier.id_supplier', '=', 'barang.id_supplier')
+            ->where('nama_barang','like',"%".$cari."%")
+            ->orWhere('harga','like',"%".$cari."%")
+            ->orWhere('nama_supplier','like',"%".$cari."%")
+            ->paginate(5),
+        ];
+
+
+        // mengirim data pegawai ke view index
+        return view('layout.barang', $data);
     }
 }

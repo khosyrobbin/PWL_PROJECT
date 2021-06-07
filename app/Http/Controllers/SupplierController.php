@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\SupplierModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SupplierController extends Controller
 {
@@ -74,5 +75,24 @@ class SupplierController extends Controller
     public function delete($id_supplier){
         $this->SupplierModel->deleteData($id_supplier);
         return redirect()->route('supplier')->with('pesan','Data Berhasil Dihapus');
+    }
+
+    // Search data
+    public function cari(Request $request){
+        // menangkap data pencarian
+		$cari = $request->cari;
+
+        // mengambil data dari table pegawai sesuai pencarian data
+        $data = [
+            'supplier' => DB::table('supplier')
+            ->where('nama_supplier','like',"%".$cari."%")
+            ->orWhere('alamat','like',"%".$cari."%")
+            ->orWhere('no_telp','like',"%".$cari."%")
+            ->paginate(5),
+        ];
+
+
+        // mengirim data pegawai ke view index
+        return view('layout.supplier', $data);
     }
 }
