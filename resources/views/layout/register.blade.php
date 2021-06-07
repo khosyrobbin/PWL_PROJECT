@@ -61,6 +61,20 @@
         </div>
 
         <div class="form-group has-feedback">
+            {{-- <input type="level" name="level" class="form-control" placeholder="Level"> --}}
+            <select name="level" id="level" class="form-control" placeholder="Level">
+                <option value="">--Pilih User--</option>
+                <option value="2">Supplier</option>
+                <option value="3">Pembeli</option>
+            </select>
+                @error('level')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+        </div>
+
+        <div class="form-group has-feedback">
             <input type="password"  name="password" class="form-control" placeholder="Password">
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                 @error('password')
