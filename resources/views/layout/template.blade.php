@@ -57,24 +57,25 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="{{asset('template')}}/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs">Alexander Pierce</span>
+                <i class="fa fa-user"></i>
+              <span class="hidden-xs">{{ Auth::user()->name }}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="{{asset('template')}}/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-
+                {{-- <img src="{{asset('template')}}/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image"> --}}
                 <p>
-                  Alexander Pierce - Web Developer
-                  <small>Member since Nov. 2012</small>
+                    {{ Auth::user()->name }}
                 </p>
               </li>
 
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                        <button type="submit" href="#" class="btn btn-default btn-flat">Log out</button>
+                    </form>
                 </div>
               </li>
             </ul>
@@ -93,11 +94,19 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="{{asset('template')}}/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+            <a href="#"><i class='fa fa-user' style='font-size:36px'></i></a>
         </div>
         <div class="pull-left info">
-          <p>Alexander Pierce</p>
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+            <p>{{ Auth::user()->name }}</p>
+            <a href="#"><i class="fa fa-circle text-success"></i>
+                @if (auth()->user()->level==1)
+                    Admin
+                @elseif (auth()->user()->level==2)
+                    Supplier
+                @elseif (auth()->user()->level==3)
+                    Pembeli
+                @endif
+            </a>
         </div>
       </div>
 
