@@ -15,20 +15,20 @@
                         </ul>
                     </div>
                     @endif
-                    <form method="post" action="{{ route('transaksi.update', $TransaksiModel->id_transaksi) }}" id="myForm">
+                    <form method="post" action="{{ route('pembayaran.update', $PembayaranModel->id_pembayaran) }}" id="myForm">
                     @csrf
                     @method('PUT') <div class="form-group">
                     <div class="form-group">
-                        <label for="id_transaksi">ID Transaksi</label> 
-                        <input type="text" name="id_transaksi" class="form-control" id="id_transaksi" aria-describedby="id_transaksi" > 
+                        <label for="id_pembayaran">ID Pembayaran</label> 
+                        <input type="text" name="id_pembayaran" class="form-control" id="id_pembayaran" value="{{ $PembayaranModel->id_pembayaran }}" aria-describedby="id_pembayaran" > 
                     </div>
                     <div class="form-group">
-                        <label for="tanggal">Tanggal</label> 
-                        <input type="tanggal" name="tanggal" class="form-control" id="tanggal" aria-describedby="tanggal" > 
+                        <label for="tanggal_bayar">Tanggal</label> 
+                        <input type="text" name="tanggal_bayar" class="form-control" id="tanggal_bayar" value="{{ $PembayaranModel->tanggal_bayar }}" aria-describedby="tanggal_bayar" > 
                     </div>
                     <div class="form-group">
-                        <label for="keterangan">Keterangan</label>
-                        <input type="keterangan" name="keterangan" class="form-control" id="keterangan" aria-describedby="keterangan" > 
+                        <label for="total_bayar">Total</label> 
+                        <input type="total_bayar" name="total_bayar" class="form-control" id="total_bayar" value="{{ $PembayaranModel->total_bayar }}" aria-describedby="total_bayar" > 
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>

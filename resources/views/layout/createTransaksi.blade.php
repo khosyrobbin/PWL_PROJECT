@@ -4,7 +4,6 @@
 <div class="container mt-5">
     <div class="row justify-content-center align-items-center">
         <div class="card" style="width: 24rem;">
-            <div class="card-header">Tambah Pembeli</div>
             <div class="card-body">
                 @if ($errors->any())
                 <div class="alert alert-danger">
@@ -16,23 +15,19 @@
                     </ul>
                 </div>
             @endif
-            <form method="post" action="{{ route('pembeli.store') }}" id="myForm">
+            <form method="post" action="{{ route('transaksi.store') }}" id="myForm">
             @csrf
                 <div class="form-group">
-                    <label for="id_pembeli">ID Pembeli</label> 
-                    <input type="text" name="id_pembeli" class="form-control" id="id_pembeli" aria-describedby="id_pembeli" > 
+                    <label for="id_transaksi">ID Transaksi</label> 
+                    <input type="text" name="id_transaksi" class="form-control" id="id_transaksi" aria-describedby="id_transaksi" > 
                 </div>
                 <div class="form-group">
-                    <label for="nama_pembeli">Nama</label> 
-                    <input type="nama_pembeli" name="nama_pembeli" class="form-control" id="nama_pembeli" aria-describedby="nama_pembeli" > 
+                    <label for="tanggal">Tanggal</label> 
+                    <input type="tanggal" name="tanggal" class="form-control" id="tanggal" aria-describedby="tanggal" > 
                 </div>
                 <div class="form-group">
-                    <label for="jenis_kelamin">Jenis Kelamin</label>
-                    <input type="jenis_kelamin" name="jenis_kelamin" class="form-control" id="jenis_kelamin" aria-describedby="jenis_kelamin" > 
-                </div>
-                <div class="form-group">
-                    <label for="alamat">Alamat</label> 
-                    <input type="alamat" name="alamat" class="form-control" id="alamat" aria-describedby="alamat" > 
+                    <label for="keterangan">Keterangan</label>
+                    <input type="keterangan" name="keterangan" class="form-control" id="keterangan" aria-describedby="keterangan" > 
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
                 </form>

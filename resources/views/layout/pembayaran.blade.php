@@ -1,11 +1,11 @@
 @extends('layout.template')
-@section('title','Pembeli')
+@section('title','Pembayaran')
 
 @section('content')
     <div class="row">
         <div class="float-right my-3">
             <div class="row ">
-                <div class="col-sm-auto"><a class="btn btn-primary btn-sm" href="{{ route('pembeli.create') }}"> Input Pembeli</a></div>
+                <div class="col-sm-auto"><a class="btn btn-primary btn-sm" href="{{ route('pembayaran.create') }}"> Input Pembayaran</a></div>
             </div>    
         </div>
     </div>
@@ -20,26 +20,24 @@
             <thead class=" bg-light-blue-active">
         <tr>
             <th>No</th>
-            <th>ID Pembeli</th>
-            <th>Nama</th>
-            <th>Jenis Kelamin</th>
-            <th>Alamat</th>
+            <th>ID Pembayaran</th>
+            <th>Tanggal</th>
+            <th>Total</th>
             <th width="280px">Action</th>
         </tr>
         </thead>
         <?php $no=1; ?>
-        @foreach ($paginate as $PembeliModel)
+        @foreach ($paginate as $PembayaranModel)
         <tr>
             <td>{{ $no++}}</td>
-            <td>{{ $PembeliModel->id_pembeli }}</td>
-            <td>{{ $PembeliModel->nama_pembeli }}</td>
-            <td>{{ $PembeliModel->jenis_kelamin }}</td>
-            <td>{{ $PembeliModel->alamat }}</td>
+            <td>{{ $PembayaranModel->id_pembayaran }}</td>
+            <td>{{ $PembayaranModel->tanggal_bayar }}</td>
+            <td>{{ $PembayaranModel->total_bayar }}</td>
             <td>
-            <form action="{{ route('pembeli.destroy',$PembeliModel->id_pembeli) }}" method="POST">
+            <form action="{{ route('pembayaran.destroy',$PembayaranModel->id_pembayaran) }}" method="POST">
  
-                    <a class="btn btn-info" href="{{ route('pembeli.show',$PembeliModel->id_pembeli) }}">Show</a>
-                    <a class="btn btn-primary" href="{{ route('pembeli.edit',$PembeliModel->id_pembeli) }}">Edit</a>
+                    <a class="btn btn-info" href="{{ route('pembayaran.show',$PembayaranModel->id_pembayaran) }}">Show</a>
+                    <a class="btn btn-primary" href="{{ route('pembayaran.edit',$PembayaranModel->id_pembayaran) }}">Edit</a>
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">Delete</button>
