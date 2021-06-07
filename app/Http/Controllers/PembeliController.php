@@ -14,9 +14,9 @@ class PembeliController extends Controller
      */
     public function index()
     {
-        $layout = PembeliModel::all(); // Mengambil semua isi tabel
-        $posts = PembeliModel::orderBy('id_pembeli', 'desc')->paginate(6);
-        return view('layout.pembeli', compact('posts'));
+        $pembelis = PembeliModel::all(); // Mengambil semua isi tabel
+        $paginate = PembeliModel::orderBy('id_pembeli', 'desc')->paginate(6);
+        return view('layout.pembeli', compact('paginate'));
         with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -61,7 +61,7 @@ class PembeliController extends Controller
     public function show($id_pembeli)
     {
         $PembeliModel = PembeliModel::find($id_pembeli);
-        return view('layout.detailPembeli', compact('Pembeli'));
+        return view('layout.detailPembeli', compact('PembeliModel'));
     }
 
     /**
@@ -73,7 +73,7 @@ class PembeliController extends Controller
     public function edit($id_pembeli)
     {
         $PembeliModel = PembeliModel::find($id_pembeli);
-        return view('layout.editPembeli', compact('Pembeli'));
+        return view('layout.editPembeli', compact('PembeliModel'));
     }
 
     /**

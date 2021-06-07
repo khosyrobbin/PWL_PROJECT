@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\BarangController;
+use App\Http\Controllers\SupplierController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PembeliController;
 use Illuminate\Http\Request;
@@ -20,19 +22,20 @@ Route::get('/', function () {
     return view('layout.home');
 });
 
-Route::get('/barang', function () {
-    return view('layout.barang');
-});
+// BARANG
+Route::get('/barang', [BarangController::class, 'index'])->name('barang');
+
+// SUPPLIER
+Route::get('/supplier', [SupplierController::class, 'index'])->name('supplier');
+Route::get('/supplier/tambah', [SupplierController::class, 'tambah']);
 
 
-Route::get('/supplier', function () {
-    return view('layout.supplier');
-});
-
+// TRANSAKSI
 Route::get('/transaksi', function () {
     return view('layout.transaksi');
 });
 
+// PEMBAYARAN
 Route::get('/pembayaran', function () {
     return view('layout.transaksi');
 });
@@ -40,4 +43,5 @@ Route::get('/pembayaran', function () {
 // Route::get('/pembeli', function () {
 //     return view('layout.pembeli');
 // });
-Route::resource('/pembeli', PembeliController::class);
+Route::resource('pembeli', PembeliController::class);
+Route::get('/pembeli/create', [PembeliController::class, 'create']);
