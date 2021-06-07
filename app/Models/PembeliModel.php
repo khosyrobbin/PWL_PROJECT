@@ -10,7 +10,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 class PembeliModel extends Model
 {
-    use HasFactory;
+ 
     protected $table="pembeli"; 
     public $timestamps= false; 
     protected $primaryKey = 'id_pembeli';
