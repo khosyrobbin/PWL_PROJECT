@@ -27,6 +27,7 @@ class BarangController extends Controller
     public function tambah(){
         $data = [
             'barang' => $this->BarangModel->tambah(),
+            'supplier' => $this->SupplierModel->allData(),
         ];
         return view('layout.tambahBarang', $data);
     }
