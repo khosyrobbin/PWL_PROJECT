@@ -2,11 +2,8 @@
 
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\SupplierController;
-<<<<<<< HEAD
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\PembayaranController;
-=======
->>>>>>> ba8a432371f33782d57cfb04f02a6f14e14feb72
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PembeliController;
@@ -57,26 +54,14 @@ Route::resource('transaksi', TransaksiController::class);
 // });
 
 // PEMBAYARAN
-<<<<<<< HEAD
 Route::resource('pembayaran', PembayaranController::class);
 // Route::get('/pembayaran', function () {
 //     return view('layout.transaksi');
 // });
-=======
-Route::get('/pembayaran', function () {
-    return view('layout.transaksi');
-});
-
-// PEMBELI
-Route::get('/pembeli', function () {
-    return view('layout.pembeli');
-});
->>>>>>> ba8a432371f33782d57cfb04f02a6f14e14feb72
 
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-<<<<<<< HEAD
 // Route::get('/pembeli', function () {
 //     return view('layout.pembeli');
 // });
@@ -84,5 +69,3 @@ Route::resource('pembeli', PembeliController::class);
 // Route::get('/pembeli/create', [PembeliController::class, 'create']);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-=======
->>>>>>> ba8a432371f33782d57cfb04f02a6f14e14feb72
