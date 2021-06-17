@@ -39,10 +39,10 @@
 
                     <div class="form-group">
                         <label>Nama Supplier</label>
-                        <select name="id_supplier" id="id_supplier" class="form-control @error('id_supplier') is-invalid @enderror">
-                            <option value="">--PILIH--</option>
-                            @foreach ($barang as $data)
-                                <option value="{{$data->id_supplier}}">{{$data->nama_supplier}}</option>
+                        <select name="id_supplier" class="form-control @error('id_supplier') is-invalid @enderror">
+                            <option value="">--Pilih Supplier--</option>
+                            @foreach ($supplier as $sp)
+                                <option value="{{$sp->id_supplier}}">{{$sp->nama_supplier}}</option>
                             @endforeach
                         </select>
                         <div class="text-danger">

@@ -39,12 +39,14 @@
 
                     <div class="form-group">
                         <label>Nama Supplier</label>
-                        <input name="id_supplier" class="form-control @error('id_supplier') is-invalid @enderror" value="{{$barang->id_supplier}}" readonly>
-                        {{-- <select name="id_supplier" class="form-control @error('id_supplier') is-invalid @enderror" value="{{$barang->id_supplier}}" >
-                            @foreach ($barang as $barang)
-                                <option value="{{$barang->id_supplier}}">{{$barang->nama_supplier}}</option>
+                        {{-- <input name="id_supplier" class="form-control @error('id_supplier') is-invalid @enderror" value="{{$barang->id_supplier}}" readonly> --}}
+                        <select name="id_supplier" class="form-control @error('id_supplier') is-invalid @enderror" value="{{$barang->id_supplier}}" >
+                            @foreach ($supplier as $sp)
+                                <option value="{{$sp->id_supplier}}" @if ($barang->id_supplier==$sp->id_supplier)
+                                    selected = 'selected'
+                                @endif>{{$sp->nama_supplier}}</option>
                             @endforeach
-                        </select> --}}
+                        </select>
                         <div class="text-danger">
                             @error('id_supplier')
                                 Nama Supplier Salah/Kosong
