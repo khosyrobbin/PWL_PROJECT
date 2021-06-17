@@ -39,7 +39,6 @@ class PembeliController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'id_pembeli' => 'required',
             'nama_pembeli' => 'required',
             'jenis_kelamin' => 'required',
             'alamat' => 'required',
@@ -48,7 +47,7 @@ class PembeliController extends Controller
             
             PembeliModel::create($request->all());
             
-            return redirect()->route('layout.pembeli')
+            return redirect()->route('pembeli.index')
             ->with('success', 'Pembeli Berhasil Ditambahkan');
     }
 
@@ -86,7 +85,6 @@ class PembeliController extends Controller
     public function update(Request $request, $id_pembeli)
     {
         $request->validate([
-            'id_pembeli' => 'required',
             'nama_pembeli' => 'required',
             'jenis_kelamin' => 'required',
             'alamat' => 'required',
@@ -108,6 +106,7 @@ class PembeliController extends Controller
     public function destroy($id_pembeli)
     {
         PembeliModel::find($id_pembeli)->delete();
-        return redirect()->route('pembeli')-> with('success', 'Pembeli Berhasil Dihapus');
+        return redirect()->route('pembeli.index')
+        -> with('success', 'Pembeli Berhasil Dihapus');
     }
 }

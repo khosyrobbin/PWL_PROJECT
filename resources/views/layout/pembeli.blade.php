@@ -2,6 +2,7 @@
 @section('title','Pembeli')
 
 @section('content')
+    <div class="col-md-12">
     <div class="row">
         <div class="float-right my-3">
             <div class="row ">
@@ -18,20 +19,18 @@
     <div class="box-body">
         <table class="table table-striped table-hover">
             <thead class=" bg-light-blue-active">
-        <tr>
-            <th>No</th>
-            <th>ID Pembeli</th>
-            <th>Nama</th>
-            <th>Jenis Kelamin</th>
-            <th>Alamat</th>
-            <th width="280px">Action</th>
-        </tr>
-        </thead>
+            <tr>
+                <th>No</th>
+                <th>Nama</th>
+                <th>Jenis Kelamin</th>
+                <th>Alamat</th>
+                <th width="280px">Action</th>
+            </tr>
+            </thead>
         <?php $no=1; ?>
         @foreach ($paginate as $PembeliModel)
         <tr>
             <td>{{ $no++}}</td>
-            <td>{{ $PembeliModel->id_pembeli }}</td>
             <td>{{ $PembeliModel->nama_pembeli }}</td>
             <td>{{ $PembeliModel->jenis_kelamin }}</td>
             <td>{{ $PembeliModel->alamat }}</td>
@@ -48,4 +47,6 @@
         </tr>
         @endforeach
  </table>
+ </div>
+ </div>
 @endsection

@@ -2,6 +2,7 @@
 @section('title','Transaksi')
 
 @section('content')
+<div class="col-md-12">
 <div class="row">
         <div class="float-right my-3">
             <div class="row ">
@@ -20,7 +21,6 @@
             <thead class=" bg-light-blue-active">
         <tr>
             <th>No</th>
-            <th>ID Transaksi</th>
             <th>Tanggal</th>
             <th>Keterangan</th>
             <th width="280px">Action</th>
@@ -30,7 +30,6 @@
         @foreach ($paginate as $TransaksiModel)
         <tr>
             <td>{{ $no++}}</td>
-            <td>{{ $TransaksiModel->id_transaksi }}</td>
             <td>{{ $TransaksiModel->tanggal }}</td>
             <td>{{ $TransaksiModel->keterangan }}</td>
             <td>
@@ -46,4 +45,5 @@
         </tr>
         @endforeach
  </table>
+ </div>
 @endsection

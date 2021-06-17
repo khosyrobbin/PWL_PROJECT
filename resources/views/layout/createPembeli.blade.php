@@ -19,17 +19,17 @@
             <form method="post" action="{{ route('pembeli.store') }}" id="myForm">
             @csrf
                 <div class="form-group">
-                    <label for="id_pembeli">ID Pembeli</label> 
-                    <input type="text" name="id_pembeli" class="form-control" id="id_pembeli" aria-describedby="id_pembeli" > 
-                </div>
-                <div class="form-group">
                     <label for="nama_pembeli">Nama</label> 
                     <input type="nama_pembeli" name="nama_pembeli" class="form-control" id="nama_pembeli" aria-describedby="nama_pembeli" > 
                 </div>
                 <div class="form-group">
-                    <label for="jenis_kelamin">Jenis Kelamin</label>
-                    <input type="jenis_kelamin" name="jenis_kelamin" class="form-control" id="jenis_kelamin" aria-describedby="jenis_kelamin" > 
-                </div>
+                        <label for="jenis_kelamin">Jenis Kelamin</label>
+                        <select id="jenis_kelamin" name="jenis_kelamin" class="select2bs4 form-control @error('jenis_kelamin') is-invalid @enderror">
+                            <option value=""> Pilih Jenis Kelamin </option>
+                            <option value="L">Laki-Laki</option>
+                            <option value="P">Perempuan</option>
+                        </select>
+                    </div>
                 <div class="form-group">
                     <label for="alamat">Alamat</label> 
                     <input type="alamat" name="alamat" class="form-control" id="alamat" aria-describedby="alamat" > 

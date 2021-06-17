@@ -18,10 +18,6 @@
             <form method="post" action="{{ route('transaksi.store') }}" id="myForm">
             @csrf
                 <div class="form-group">
-                    <label for="id_transaksi">ID Transaksi</label> 
-                    <input type="text" name="id_transaksi" class="form-control" id="id_transaksi" aria-describedby="id_transaksi" > 
-                </div>
-                <div class="form-group">
                     <label for="tanggal">Tanggal</label> 
                     <input type="tanggal" name="tanggal" class="form-control" id="tanggal" aria-describedby="tanggal" > 
                 </div>

@@ -7,7 +7,6 @@
             <div class="card" style="width: 24rem;">
                 <div class="card-body">
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><b>ID Pembayaran: </b>{{$PembayaranModel->id_pembayaran}}</li>
                         <li class="list-group-item"><b>Tanggal: </b>{{$PembayaranModel->tanggal_bayar}}</li>
                         <li class="list-group-item"><b>Total: </b>{{$PembayaranModel->total_bayar}}</li>
                         

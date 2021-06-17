@@ -6,7 +6,6 @@
             <div class="card" style="width: 24rem;">
                 <div class="card-body">
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><b>ID Transaksi: </b>{{$TransaksiModel->id_transaksi}}</li>
                         <li class="list-group-item"><b>Tanggal: </b>{{$TransaksiModel->tanggal}}</li>
                         <li class="list-group-item"><b>Keterangan: </b>{{$TransaksiModel->keterangan}}</li>
                     </ul>

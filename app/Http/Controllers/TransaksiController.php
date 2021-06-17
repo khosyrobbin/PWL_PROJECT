@@ -47,7 +47,7 @@ class TransaksiController extends Controller
             
             TransaksiModel::create($request->all());
             
-            return redirect()->route('layout.transaksi')
+            return redirect()->route('transaksi.index')
             ->with('success', 'Transaksi Berhasil Ditambahkan');
     }
 
@@ -106,6 +106,7 @@ class TransaksiController extends Controller
     public function destroy($id_transaksi)
     {
         TransaksiModel::find($id_transaksi)->delete();
-        return redirect()->route('transaksi')-> with('success', 'Transaksi Berhasil Dihapus');
+        return redirect()->route('transaksi.index')
+        -> with('success', 'Transaksi Berhasil Dihapus');
     }
 }

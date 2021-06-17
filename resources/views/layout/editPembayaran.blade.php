@@ -19,10 +19,6 @@
                     @csrf
                     @method('PUT') <div class="form-group">
                     <div class="form-group">
-                        <label for="id_pembayaran">ID Pembayaran</label> 
-                        <input type="text" name="id_pembayaran" class="form-control" id="id_pembayaran" value="{{ $PembayaranModel->id_pembayaran }}" aria-describedby="id_pembayaran" > 
-                    </div>
-                    <div class="form-group">
                         <label for="tanggal_bayar">Tanggal</label> 
                         <input type="text" name="tanggal_bayar" class="form-control" id="tanggal_bayar" value="{{ $PembayaranModel->tanggal_bayar }}" aria-describedby="tanggal_bayar" > 
                     </div>

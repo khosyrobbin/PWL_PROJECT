@@ -7,7 +7,6 @@
             <div class="card" style="width: 24rem;">
                 <div class="card-body">
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><b>ID Pembeli: </b>{{$PembeliModel->id_pembeli}}</li>
                         <li class="list-group-item"><b>Nama: </b>{{$PembeliModel->nama_pembeli}}</li>
                         <li class="list-group-item"><b>Jenis Kelamin: </b>{{$PembeliModel->jenis_kelamin}}</li>
                         <li class="list-group-item"><b>Alamat: </b>{{$PembeliModel->alamat}}</li>

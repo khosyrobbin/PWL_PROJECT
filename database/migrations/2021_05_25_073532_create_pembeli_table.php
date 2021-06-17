@@ -16,7 +16,7 @@ class CreatePembeliTable extends Migration
         Schema::create('pembeli', function (Blueprint $table) {
             $table->id('id_pembeli');
             $table->string('nama_pembeli', 30)->nullable();
-            $table->string('jenis_kelamin');
+            $table->enum('jenis_kelamin', ['L', 'P']);
             $table->string('alamat');
             $table->timestamps();
         });

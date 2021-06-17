@@ -47,7 +47,7 @@ class PembayaranController extends Controller
             
             PembayaranModel::create($request->all());
             
-            return redirect()->route('layout.pembayaran')
+            return redirect()->route('pembayaran.index')
             ->with('success', 'Pembayaran Berhasil Ditambahkan');
     }
 
@@ -106,6 +106,7 @@ class PembayaranController extends Controller
     public function destroy($id_pembayaran)
     {
         PembayaranModel::find($id_pembayaran)->delete();
-        return redirect()->route('pembayaran')-> with('success', 'Pembayaran Berhasil Dihapus');
+        return redirect()->route('pembayaran.index')
+        -> with('success', 'Pembayaran Berhasil Dihapus');
     }
 }
