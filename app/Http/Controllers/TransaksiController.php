@@ -70,7 +70,7 @@ class TransaksiController extends Controller
 
         //Create
         $data = [
-            'tanggal' => Request()->nama_barang,
+            'tanggal' => Request()->tanggal,
             'id_barang' => Request()->id_barang,
             'keterangan' => Request()->keterangan,
         ];
