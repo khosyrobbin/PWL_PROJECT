@@ -27,7 +27,10 @@
                 @foreach ($pembayaran as $data)
                     <tr>
                         <th scope="row">{{ $no++ }}</th>
-                        <td>{{ $data->nama_pembeli }}</td>
+                        @foreach ($transaksi as $trs)
+                            <td>{{ $trs->nama_pembeli }}</td>
+                        @endforeach
+                        {{-- <td>{{ $data->nama_pembeli }}</td> --}}
                         <td>{{ $data->tanggal_bayar }}</td>
                         <td>{{ $data->total_bayar }}</td>
                         <td>

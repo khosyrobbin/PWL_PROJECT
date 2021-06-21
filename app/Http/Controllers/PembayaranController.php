@@ -18,6 +18,7 @@ class PembayaranController extends Controller
     public function index(){
         $data = [
             'pembayaran' => $this->PembayaranModel->allData(),
+            'transaksi' => $this->TransaksiModel->allData(),
         ];
         return view('layout.pembayaran', $data);
     }
