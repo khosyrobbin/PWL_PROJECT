@@ -4,20 +4,32 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Auth\PembayaranModel as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Support\Facades\DB;
 
 class PembayaranModel extends Model
 {
-    protected $table="pembayaran"; 
-    public $timestamps= false; 
-    protected $primaryKey = 'id_pembayaran';
-
-    protected $fillable = [
-        'id_pemabayaran',
-        'tanggal_bayar',
-        'total_bayar',
-
-    ];
+    public function allData(){
+        return DB::table('pembayaran')
+        // ->join('supplier', 'supplier.id_supplier', '=', 'barang.id_supplier')
+        ->paginate(5);
+    }
+    public function addData($data){
+        DB::table('pembayaran')->insert($data);
+    }
+    public function detailData($id_barang){
+        return DB::table('pembayaran')->where('id_pembayaran', $id_pembayaran)
+        // ->join('supplier', 'supplier.id_supplier', '=', 'barang.id_supplier')
+        ->first();
+    }
+    public function editData($id_barang, $data){
+        DB::table('pembayaran')->where('id_pembayaran', $id_pembayaran)->update($data);
+    }
+    public function deleteData($id_barang){
+        DB::table('pembayaran')->where('id_pembayaran', $id_pembayaran)->delete();
+    }
+    public function tambah(){
+        return DB::table('pembayaran')
+        // ->join('supplier', 'supplier.id_supplier', '=', 'barang.id_supplier')
+        ->get();
+    }
 }
