@@ -25,7 +25,7 @@ use Illuminate\Http\Request;
 //     return view('layout.home');
 // });
 
-// BARANG
+//BARANG
 Route::get('/barang', [BarangController::class, 'index'])->name('barang');
 Route::get('/barang/tambah', [BarangController::class, 'tambah']);
 Route::post('/barang/simpan', [BarangController::class, 'simpan']);
@@ -45,16 +45,31 @@ Route::post('/supplier/update/{id_supplier}', [SupplierController::class, 'updat
 Route::get('/supplier/delete/{id_supplier}', [SupplierController::class, 'delete']);
 Route::get('/supplier/detail/{id_supplier}', [SupplierController::class, 'detail']);
 Route::get('/supplier/cari', [SupplierController::class, 'cari']);
-
-
+// Route::resource('supplier', SupplierController::class);
+// Route::resource('barang', BarangController::class);
 // TRANSAKSI
-Route::resource('transaksi', TransaksiController::class);
+Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi');
+Route::get('/transaksi/create', [TransaksiController::class, 'create']);
+Route::post('/transaksi/simpan', [TransaksiController::class, 'simpan']);
+Route::get('/transaksi/edit/{id_transaksi}', [TransaksiController::class, 'edit']);
+Route::post('/transaksi/update/{id_transaksi}', [TransaksiController::class, 'update']);
+Route::get('/transaksi/delete/{id_transaksi}', [TransaksiController::class, 'delete']);
+Route::get('/transaksi/detail/{id_transaksi}', [TransaksiController::class, 'detail']);
+// Route::resource('transaksi', TransaksiController::class);
+// Route::get('/transaksi/{id}', [TransaksiController::class, 'indextransak'])->name('indextransak');
 // Route::get('/transaksi', function () {
 //     return view('layout.transaksi');
 // });
 
 // PEMBAYARAN
-Route::resource('pembayaran', PembayaranController::class);
+Route::get('/pembayaran', [PembayaranController::class, 'index'])->name('pembayaran');
+Route::get('/pembayaran/tambah', [PembayaranController::class, 'tambah']);
+Route::post('/pembayaran/simpan', [PembayaranController::class, 'simpan']);
+Route::get('/pembayaran/edit/{id_pembayaran}', [PembayaranController::class, 'edit']);
+Route::post('/pembayaran/update/{id_pembayaran}', [PembayaranController::class, 'update']);
+Route::get('/pembayaran/delete/{id_pembayaran}', [PembayaranController::class, 'delete']);
+Route::get('/pembayaran/detail/{id_pembayaran}', [PembayaranController::class, 'detail']);
+// Route::resource('pembayaran', PembayaranController::class);
 // Route::get('/pembayaran', function () {
 //     return view('layout.transaksi');
 // });
