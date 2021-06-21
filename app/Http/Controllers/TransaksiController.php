@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\TransaksiModel;
 use App\Models\BarangModel;
+use App\Models\PembeliiModel;
 
 class TransaksiController extends Controller
 {
@@ -12,6 +13,7 @@ class TransaksiController extends Controller
     {
         $this->TransaksiModel = new TransaksiModel();
         $this->BarangModel = new BarangModel();
+        $this->PembeliiModel = new PembeliiModel();
 
     }
 
@@ -27,6 +29,7 @@ class TransaksiController extends Controller
         $data = [
             'transaksi' => $this->TransaksiModel->create(),
             'barang' => $this->BarangModel->allData(),
+            'pembeli' => $this->PembeliiModel->allData(),
         ];
         return view('layout.createTransaksi', $data);
     }
@@ -36,6 +39,7 @@ class TransaksiController extends Controller
         Request()->validate([
             'tanggal' => 'required',
             'id_barang' => 'required',
+            'id_pembeli' => 'required',
             'keterangan' => 'required',
         ]);
 
@@ -43,6 +47,7 @@ class TransaksiController extends Controller
         $data = [
             'tanggal' => Request()->tanggal,
             'id_barang' => Request()->id_barang,
+            'id_pembeli' => Request()->id_pembeli,
             'keterangan' => Request()->keterangan,
         ];
 
@@ -55,6 +60,7 @@ class TransaksiController extends Controller
         $data = [
             'transaksi' => $this->TransaksiModel->detailData($id_transaksi),
             'barang' => $this->BarangModel->allData(),
+            'pembeli' => $this->PembeliiModel->allData(),
         ];
         return view('layout.editTransaksi', $data);
     }
@@ -65,6 +71,7 @@ class TransaksiController extends Controller
         Request()->validate([
             'tanggal' => 'required',
             'id_barang' => 'required',
+            'id_pembeli' => 'required',
             'keterangan' => 'required',
         ]);
 
@@ -72,6 +79,7 @@ class TransaksiController extends Controller
         $data = [
             'tanggal' => Request()->tanggal,
             'id_barang' => Request()->id_barang,
+            'id_pembeli' => Request()->id_pembeli,
             'keterangan' => Request()->keterangan,
         ];
 

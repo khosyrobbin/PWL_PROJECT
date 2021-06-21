@@ -6,7 +6,7 @@ use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\PembayaranController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PembeliController;
+use App\Http\Controllers\PembeliiController;
 use Illuminate\Http\Request;
 
 
@@ -45,8 +45,7 @@ Route::post('/supplier/update/{id_supplier}', [SupplierController::class, 'updat
 Route::get('/supplier/delete/{id_supplier}', [SupplierController::class, 'delete']);
 Route::get('/supplier/detail/{id_supplier}', [SupplierController::class, 'detail']);
 Route::get('/supplier/cari', [SupplierController::class, 'cari']);
-// Route::resource('supplier', SupplierController::class);
-// Route::resource('barang', BarangController::class);
+
 // TRANSAKSI
 Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi');
 Route::get('/transaksi/create', [TransaksiController::class, 'create']);
@@ -80,7 +79,15 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 // Route::get('/pembeli', function () {
 //     return view('layout.pembeli');
 // });
-Route::resource('pembeli', PembeliController::class);
-// Route::get('/pembeli/create', [PembeliController::class, 'create']);
+// Route::resource('pembeli', PembeliController::class);
+Route::get('/pembeli', [PembeliiController::class, 'index'])->name('pembelii');
+Route::get('/pembeli/tambah', [PembeliiController::class, 'tambah']);
+Route::post('/pembeli/simpan', [PembeliiController::class, 'simpan']);
+Route::get('/pembeli/edit/{id_supplier}', [PembeliiController::class, 'edit']);
+Route::post('/pembeli/update/{id_supplier}', [PembeliiController::class, 'update']);
+Route::get('/pembeli/delete/{id_supplier}', [PembeliiController::class, 'delete']);
+Route::get('/pembeli/detail/{id_supplier}', [PembeliiController::class, 'detail']);
+Route::get('/pembeli/cari', [PembeliiController::class, 'cari']);
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

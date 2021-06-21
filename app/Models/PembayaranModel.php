@@ -10,26 +10,26 @@ class PembayaranModel extends Model
 {
     public function allData(){
         return DB::table('pembayaran')
-        // ->join('supplier', 'supplier.id_supplier', '=', 'barang.id_supplier')
+        ->join('transaksi', 'transaksi.id_transaksi', '=', 'pembayaran.id_transaksi')
         ->paginate(5);
     }
     public function addData($data){
         DB::table('pembayaran')->insert($data);
     }
-    public function detailData($id_barang){
+    public function detailData($id_pembayaran){
         return DB::table('pembayaran')->where('id_pembayaran', $id_pembayaran)
-        // ->join('supplier', 'supplier.id_supplier', '=', 'barang.id_supplier')
+        ->join('transaksi', 'transaksi.id_transaksi', '=', 'pembayaran.id_transaksi')
         ->first();
     }
-    public function editData($id_barang, $data){
+    public function editData($id_pembayaran, $data){
         DB::table('pembayaran')->where('id_pembayaran', $id_pembayaran)->update($data);
     }
-    public function deleteData($id_barang){
+    public function deleteData($id_pembayaran){
         DB::table('pembayaran')->where('id_pembayaran', $id_pembayaran)->delete();
     }
     public function tambah(){
         return DB::table('pembayaran')
-        // ->join('supplier', 'supplier.id_supplier', '=', 'barang.id_supplier')
+        ->join('transaksi', 'transaksi.id_transaksi', '=', 'pembayaran.id_transaksi')
         ->get();
     }
 }

@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\PembayaranModel;
+use App\Models\TransaksiModel;
 
 class PembayaranController extends Controller
 {
     public function __construct()
     {
         $this->PembayaranModel = new PembayaranModel();
-        // $this->SupplierModel = new SupplierModel();
+        $this->TransaksiModel = new TransaksiModel();
 
     }
 
@@ -25,7 +26,7 @@ class PembayaranController extends Controller
     public function tambah(){
         $data = [
             'pembayaran' => $this->PembayaranModel->tambah(),
-            // 'supplier' => $this->SupplierModel->allData(),
+            'transaksi' => $this->TransaksiModel->allData(),
         ];
         return view('layout.createPembayaran', $data);
     }
@@ -35,12 +36,14 @@ class PembayaranController extends Controller
         Request()->validate([
             'tanggal_bayar' => 'required',
             'total_bayar' => 'required',
+            'id_transaksi' => 'required',
         ]);
 
         //Create
         $data = [
-            'tanggal_bayar' => Request()->nama_barang,
-            'total_bayar' => Request()->harga,
+            'tanggal_bayar' => Request()->tanggal_bayar,
+            'total_bayar' => Request()->total_bayar,
+            'id_transaksi' => Request()->id_transaksi,
         ];
 
         $this->PembayaranModel->addData($data);
@@ -51,7 +54,7 @@ class PembayaranController extends Controller
     public function edit($id_pembayaran){
         $data = [
             'pembayaran' => $this->PembayaranModel->detailData($id_pembayaran),
-            // 'supplier' => $this->SupplierModel->allData(),
+            'transaksi' => $this->TransaksiModel->allData(),
         ];
         return view('layout.editPembayaran', $data);
     }
@@ -62,12 +65,14 @@ class PembayaranController extends Controller
         Request()->validate([
             'tanggal_bayar' => 'required',
             'total_bayar' => 'required',
+            'id_transaksi' => 'required',
         ]);
 
         //Create
         $data = [
-            'tanggal_bayar' => Request()->nama_barang,
-            'total_bayar' => Request()->harga,
+            'tanggal_bayar' => Request()->tanggal_bayar,
+            'total_bayar' => Request()->total_bayar,
+            'id_transaksi' => Request()->id_transaksi,
         ];
 
         $this->PembayaranModel->editData($id_pembayaran, $data);

@@ -18,6 +18,21 @@
                     </div>
 
                     <div class="form-group">
+                        <label>Nama Pembeli</label>
+                        <select name="id_pembeli" class="form-control @error('id_pembeli') is-invalid @enderror">
+                            <option value="">--Pilih Barang--</option>
+                            @foreach ($pembeli as $pmb)
+                                <option value="{{$pmb->id_pembeli}}">{{$pmb->nama_pembeli}}</option>
+                            @endforeach
+                        </select>
+                        <div class="text-danger">
+                            @error('id_pembeli')
+                                Nama Pembeli Salah/Kosong
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         <label>Nama Barang</label>
                         <select name="id_barang" class="form-control @error('id_barang') is-invalid @enderror">
                             <option value="">--Pilih Barang--</option>

@@ -16,6 +16,7 @@
             <thead class=" bg-light-blue-active">
                 <tr>
                     <th>No</th>
+                    <th>Transaksi</th>
                     <th>Tanggal Bayar</th>
                     <th>Total Bayar</th>
                     <th>ACTION</th>
@@ -26,6 +27,7 @@
                 @foreach ($pembayaran as $data)
                     <tr>
                         <th scope="row">{{ $no++ }}</th>
+                        <td>{{ $data->nama_pembeli }}</td>
                         <td>{{ $data->tanggal_bayar }}</td>
                         <td>{{ $data->total_bayar }}</td>
                         <td>

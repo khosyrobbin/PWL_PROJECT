@@ -1,8 +1,8 @@
 @extends('layout.template')
-@section('title','Transaksi')
+@section('title','Pembeli')
 
 @section('content')
-<a href="/transaksi/create" class="btn btn-primary btn-sm " >Tambah</a> <br>
+<a href="/pembeli/tambah" class="btn btn-primary btn-sm " >Tambah</a> <br>
 @if (session('pesan'))
     <div class="alert alert-success alert-dismissible">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -11,32 +11,36 @@
       </div>
     @endif
 
+    {{-- search --}}
+    <p>Cari Pembeli :</p>
+    <form action="/pembeli/cari" method="GET">
+        <input type="text" name="cari" placeholder="Cari Pembeli .." value="{{ old('cari') }}">
+        <input type="submit" value="CARI">
+    </form>
 
     <div class="box-body">
         <table class="table table-striped table-hover">
             <thead class=" bg-light-blue-active">
                 <tr>
                     <th scope="col">No</th>
-                    <th scope="col">Tanggal</th>
-                    <th scope="col">Barang</th>
-                    <th scope="col">Pembeli</th>
-                    <th scope="col">Keterangan</th>
+                    <th scope="col">Nama Pembeli</th>
+                    <th scope="col">Jenis Kelamin</th>
+                    <th scope="col">Alamat</th>
                     <th>ACTION</th>
                 </tr>
             </thead>
             <tbody>
                 <?php $no=1; ?>
-                @foreach ($transaksi as $data)
+                @foreach ($pembeli as $data)
                     <tr>
                         <th scope="row">{{ $no++ }}</th>
-                        <td>{{ $data->tanggal }}</td>
-                        <td>{{ $data->nama_barang }}</td>
                         <td>{{ $data->nama_pembeli }}</td>
-                        <td>{{ $data->keterangan }}</td>
+                        <td>{{ $data->jenis_kelamin }}</td>
+                        <td>{{ $data->alamat }}</td>
                         <td>
                             {{-- <a href="" class="btn btn-sm btn-success">Detail</a> --}}
-                            <a href="/transaksi/edit/{{ $data->id_transaksi }}" class="btn btn-sm btn-warning">Edit</a>
-                            <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delete{{ $data->id_transaksi }}">
+                            <a href="/pembeli/edit/{{ $data->id_pembeli }}" class="btn btn-sm btn-warning">Edit</a>
+                            <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delete{{ $data->id_pembeli }}">
                                 DELETE
                             </button>
                         </td>
@@ -45,8 +49,8 @@
             </tbody>
         </table>
         {{-- delete notif --}}
-    @foreach ($transaksi as $data)
-        <div class="modal modal-danger fade" id="delete{{ $data->id_transaksi }}">
+    @foreach ($pembeli as $data)
+        <div class="modal modal-danger fade" id="delete{{ $data->id_pembeli }}">
             <div class="modal-dialog modal-sm">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -55,11 +59,11 @@
                         <h4 class="modal-title">PERINGATAN!!</h4>
                     </div>
                     <div class="modal-body">
-                        <p>Yakin menghapus data {{ $data->tanggal }} ?</p>
+                        <p>Yakin menghapus data {{ $data->nama_pembeli }} ?</p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">NO</button>
-                        <a href="/transaksi/delete/{{ $data->id_transaksi }}" class="btn btn-outline">YES</a>
+                        <a href="/pembeli/delete/{{ $data->id_pembeli }}" class="btn btn-outline">YES</a>
                     </div>
                 </div>
                 <!-- /.modal-content -->

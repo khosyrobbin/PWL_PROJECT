@@ -9,10 +9,24 @@
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label>Tanggal</label>
-                        <input name="tanggal" class="form-control @error('tanggal') is-invalid @enderror" value="{{$transaksi->tanggal}}">
+                        <input name="tanggal"  type="date" class="form-control @error('tanggal') is-invalid @enderror" value="{{$transaksi->tanggal}}">
                         <div class="text-danger">
                             @error('tanggal')
                                 Tanggal Salah/Kosong
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Nama Pembeli</label>
+                        <select name="id_pembeli" class="form-control @error('id_pembeli') is-invalid @enderror" value="{{$transaksi->id_pembeli}}">
+                            @foreach ($pembeli as $pmb)
+                                <option value="{{$pmb->id_pembeli}}">{{$pmb->nama_pembeli}}</option>
+                            @endforeach
+                        </select>
+                        <div class="text-danger">
+                            @error('id_pembeli')
+                                Nama Pembeli Salah/Kosong
                             @enderror
                         </div>
                     </div>

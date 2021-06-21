@@ -12,6 +12,7 @@ class TransaksiModel extends Model
     public function allData(){
         return DB::table('transaksi')
         ->join('barang', 'barang.id_barang', '=', 'transaksi.id_barang')
+        ->join('pembeli', 'pembeli.id_pembeli', '=', 'transaksi.id_pembeli')
         ->paginate(5);
     }
     public function addData($data){
@@ -20,6 +21,7 @@ class TransaksiModel extends Model
     public function detailData($id_transaksi){
         return DB::table('transaksi')->where('id_transaksi', $id_transaksi)
         ->join('barang', 'barang.id_barang', '=', 'transaksi.id_barang')
+        ->join('pembeli', 'pembeli.id_pembeli', '=', 'transaksi.id_pembeli')
         ->first();
     }
     public function editData($id_transaksi, $data){
@@ -31,6 +33,7 @@ class TransaksiModel extends Model
     public function create(){
         return DB::table('transaksi')
         ->join('barang', 'barang.id_barang', '=', 'transaksi.id_transaksi')
+        ->join('pembeli', 'pembeli.id_pembeli', '=', 'transaksi.id_pembeli')
         ->get();
     }
 }
