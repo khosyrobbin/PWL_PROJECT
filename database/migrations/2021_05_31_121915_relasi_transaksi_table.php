@@ -17,8 +17,8 @@ class RelasiTransaksiTable extends Migration
             $table->unsignedBigInteger('id_barang')->nullable();
             $table->foreign('id_barang')->references('id_barang')->on('barang');
 
-            $table->unsignedBigInteger('id_pembeli')->nullable();
-            $table->foreign('id_pembeli')->references('id_pembeli')->on('pembeli');
+            // $table->unsignedBigInteger('id_pembeli')->nullable();
+            // $table->foreign('id_pembeli')->references('id_pembeli')->on('pembeli');
         });
     }
 
@@ -33,8 +33,8 @@ class RelasiTransaksiTable extends Migration
             $table->string('barang');
             $table->dropForeign(['id_barang']);
 
-            $table->string('pembeli');
-            $table->dropForeign(['id_pembeli']);
+            // $table->string('pembeli');
+            // $table->dropForeign(['id_pembeli']);
         });
     }
 }

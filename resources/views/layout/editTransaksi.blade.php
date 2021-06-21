@@ -1,35 +1,54 @@
 @extends('layout.template')
+@section('title','Edit Transaksi')
 
 @section('content')
-    <div class="container mt-5">
-        <div class="row justify-content-center align-items-center">
-            <div class="card" style="width: 24rem;">
-                <div class="card-body">
-                    @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <strong>Whoops!</strong> There were some problems with your input.<br><br>
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
+    <form action="/transaksi/update/{{$transaksi->id_transaksi}}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <div class="content" style="height:600px">
+            <div class="rows">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Tanggal</label>
+                        <input name="tanggal" class="form-control @error('tanggal') is-invalid @enderror" value="{{$transaksi->tanggal}}">
+                        <div class="text-danger">
+                            @error('tanggal')
+                                Tanggal Salah/Kosong
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Nama Barang</label>
+                        <select name="id_barang" class="form-control @error('id_barang') is-invalid @enderror" value="{{$transaksi->id_barang}}" >
+                            @foreach ($barang as $brg)
+                                <option value="{{$brg->id_barang}}" @if ($transaksi->id_barang==$brg->id_barang)
+                                    selected = 'selected'
+                                @endif>{{$brg->nama_barang}}</option>
                             @endforeach
-                        </ul>
+                        </select>
+                        <div class="text-danger">
+                            @error('id_barang')
+                                Nama Barang Salah/Kosong
+                            @enderror
+                        </div>
                     </div>
-                    @endif
-                    <form method="post" action="{{ route('transaksi.update', $TransaksiModel->id_transaksi) }}" id="myForm">
-                    @csrf
-                    @method('PUT') <div class="form-group">
+
                     <div class="form-group">
-                        <label for="tanggal">Tanggal</label> 
-                        <input type="tanggal" name="tanggal" class="form-control" id="tanggal" aria-describedby="tanggal" > 
+                        <label>Keterangan</label>
+                        <input name="keterangan" class="form-control @error('keterangan') is-invalid @enderror" value="{{$transaksi->keterangan}}">
+                        <div class="text-danger">
+                            @error('keterangan')
+                                Keterangan Salah/Kosong
+                            @enderror
+                        </div>
                     </div>
+
                     <div class="form-group">
-                        <label for="keterangan">Keterangan</label>
-                        <input type="keterangan" name="keterangan" class="form-control" id="keterangan" aria-describedby="keterangan" > 
+                        <button class="btn btn-primary btn-sm">Simpan</button>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
+
+                </div>
             </div>
         </div>
-    </div>
-</div>
+    </form>
 @endsection

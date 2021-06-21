@@ -2,48 +2,68 @@
 @section('title','Transaksi')
 
 @section('content')
-<div class="col-md-12">
-<div class="row">
-        <div class="float-right my-3">
-            <div class="row ">
-                <div class="col-sm-auto"><a class="btn btn-primary btn-sm" href="{{ route('transaksi.create') }}"> Input Transaksi</a></div>
-            </div>    
-        </div>
-    </div>
-    @if ($message = Session::get('success'))
-        <div class="alert alert-success">
-            <p>{{ $message }}</p>
-        </div>
+<a href="/transaksi/create" class="btn btn-primary btn-sm " >Tambah</a> <br>
+@if (session('pesan'))
+    <div class="alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h4><i class="icon fa fa-check"></i> Sucsess!</h4>
+        {{session('pesan')}}.
+      </div>
     @endif
- 
+
+
     <div class="box-body">
         <table class="table table-striped table-hover">
             <thead class=" bg-light-blue-active">
-        <tr>
-            <th>No</th>
-            <th>Tanggal</th>
-            <th>Keterangan</th>
-            <th width="280px">Action</th>
-        </tr>
-        </thead>
-        <?php $no=1; ?>
-        @foreach ($paginate as $TransaksiModel)
-        <tr>
-            <td>{{ $no++}}</td>
-            <td>{{ $TransaksiModel->tanggal }}</td>
-            <td>{{ $TransaksiModel->keterangan }}</td>
-            <td>
-            <form action="{{ route('transaksi.destroy',$TransaksiModel->id_transaksi) }}" method="POST">
- 
-                    <a class="btn btn-info" href="{{ route('transaksi.show',$TransaksiModel->id_transaksi) }}">Show</a>
-                    <a class="btn btn-primary" href="{{ route('transaksi.edit',$TransaksiModel->id_transaksi) }}">Edit</a>
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger">Delete</button>
-            </form>
-            </td>
-        </tr>
-        @endforeach
- </table>
- </div>
+                <tr>
+                    <th scope="col">No</th>
+                    <th scope="col">Tanggal</th>
+                    <th scope="col">Barang</th>
+                    <th scope="col">Keterangan</th>
+                    <th>ACTION</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php $no=1; ?>
+                @foreach ($transaksi as $data)
+                    <tr>
+                        <th scope="row">{{ $no++ }}</th>
+                        <td>{{ $data->tanggal }}</td>
+                        <td>{{ $data->nama_barang }}</td>
+                        <td>{{ $data->keterangan }}</td>
+                        <td>
+                            {{-- <a href="" class="btn btn-sm btn-success">Detail</a> --}}
+                            <a href="/transaksi/edit/{{ $data->id_transaksi }}" class="btn btn-sm btn-warning">Edit</a>
+                            <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delete{{ $data->id_transaksi }}">
+                                DELETE
+                            </button>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+        {{-- delete notif --}}
+    @foreach ($transaksi as $data)
+        <div class="modal modal-danger fade" id="delete{{ $data->id_transaksi }}">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">PERINGATAN!!</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Yakin menghapus data {{ $data->tanggal }} ?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">NO</button>
+                        <a href="/transaksi/delete/{{ $data->id_transaksi }}" class="btn btn-outline">YES</a>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+        <!-- /.modal-dialog -->
+        </div>
+    @endforeach
+    </div
 @endsection

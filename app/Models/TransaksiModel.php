@@ -4,20 +4,33 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Auth\TransaksiModel as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\BarangModel;
+use Illuminate\Support\Facades\DB;
 
 class TransaksiModel extends Model
 {
-    protected $table="transaksi"; 
-    public $timestamps= false; 
-    protected $primaryKey = 'id_transaksi';
-
-    protected $fillable = [
-        'id_transaksi',
-        'tanggal',
-        'keterangan',
-
-    ];
+    public function allData(){
+        return DB::table('transaksi')
+        ->join('barang', 'barang.id_barang', '=', 'transaksi.id_barang')
+        ->paginate(5);
+    }
+    public function addData($data){
+        DB::table('transaksi')->insert($data);
+    }
+    public function detailData($id_transaksi){
+        return DB::table('transaksi')->where('id_transaksi', $id_transaksi)
+        ->join('barang', 'barang.id_barang', '=', 'transaksi.id_barang')
+        ->first();
+    }
+    public function editData($id_transaksi, $data){
+        DB::table('transaksi')->where('id_transaksi', $id_transaksi)->update($data);
+    }
+    public function deleteData($id_transaksi){
+        DB::table('transaksi')->where('id_transaksi', $id_transaksi)->delete();
+    }
+    public function create(){
+        return DB::table('transaksi')
+        ->join('barang', 'barang.id_barang', '=', 'transaksi.id_transaksi')
+        ->get();
+    }
 }

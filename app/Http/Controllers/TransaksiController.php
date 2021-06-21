@@ -4,109 +4,104 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\TransaksiModel;
+use App\Models\BarangModel;
 
 class TransaksiController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function __construct()
     {
-        $transak = TransaksiModel::all(); 
-        $paginate = TransaksiModel::orderBy('id_transaksi', 'desc')->paginate(6);
-        return view('layout.transaksi', compact('paginate'));
-        with('i', (request()->input('page', 1) - 1) * 5);
+        $this->TransaksiModel = new TransaksiModel();
+        $this->BarangModel = new BarangModel();
+
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('layout.createTransaksi');
+    public function index(){
+        $data = [
+            'transaksi' => $this->TransaksiModel->allData(),
+        ];
+        return view('layout.transaksi', $data);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $request->validate([
-            'id_transaksi' => 'required',
+    // tambah data
+    public function create(){
+        $data = [
+            'transaksi' => $this->TransaksiModel->create(),
+            'barang' => $this->BarangModel->allData(),
+        ];
+        return view('layout.createTransaksi', $data);
+    }
+
+    // simpan
+    public function simpan(){
+        Request()->validate([
             'tanggal' => 'required',
+            'id_barang' => 'required',
             'keterangan' => 'required',
-            
-            ]);
-            
-            TransaksiModel::create($request->all());
-            
-            return redirect()->route('transaksi.index')
-            ->with('success', 'Transaksi Berhasil Ditambahkan');
+        ]);
+
+        //Create
+        $data = [
+            'tanggal' => Request()->nama_barang,
+            'id_barang' => Request()->id_barang,
+            'keterangan' => Request()->keterangan,
+        ];
+
+        $this->TransaksiModel->addData($data);
+        return redirect()->route('transaksi')->with('pesan','Data Berhasil Ditambahkan');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id_transaksi)
-    {
-        $TransaksiModel = TransaksiModel::find($id_transaksi);
-        return view('layout.detailTransaksi', compact('TransaksiModel'));
+    // edit
+    public function edit($id_transaksi){
+        $data = [
+            'transaksi' => $this->TransaksiModel->detailData($id_transaksi),
+            'barang' => $this->BarangModel->allData(),
+        ];
+        return view('layout.editTransaksi', $data);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id_transaksi)
+    // update
+    public function update($id_transaksi)
     {
-        $TransaksiModel = TransaksiModel::find($id_transaksi);
-        return view('layout.editTransaksi', compact('TransaksiModel'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id_transaksi)
-    {
-        $request->validate([
-            'id_transaksi' => 'required',
+        Request()->validate([
             'tanggal' => 'required',
+            'id_barang' => 'required',
             'keterangan' => 'required',
-            
-            ]);
-           
-            TransaksiModel::find($id_transaksi)->update($request->all());
-           
-            return redirect()->route('transaksi.index')
-            ->with('success', 'Transaksi Berhasil Diupdate');
+        ]);
+
+        //Create
+        $data = [
+            'tanggal' => Request()->nama_barang,
+            'id_barang' => Request()->id_barang,
+            'keterangan' => Request()->keterangan,
+        ];
+
+        $this->TransaksiModel->editData($id_transaksi, $data);
+        return redirect()->route('transaksi')->with('pesan', 'Data Berhasil DiPerbarui');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id_transaksi)
-    {
-        TransaksiModel::find($id_transaksi)->delete();
-        return redirect()->route('transaksi.index')
-        -> with('success', 'Transaksi Berhasil Dihapus');
+    // delete
+    public function delete($id_transaksi){
+        $this->TransaksiModel->deleteData($id_transaksi);
+        return redirect()->route('transaksi')->with('pesan','Data Berhasil Dihapus');
     }
+
+    // Search data
+    // public function cari(Request $request){
+    //     // menangkap data pencarian
+	// 	$cari = $request->cari;
+
+    //     // mengambil data dari table pegawai sesuai pencarian data
+    //     $data = [
+    //         'barang' => DB::table('barang')
+    //         ->join('supplier', 'supplier.id_supplier', '=', 'barang.id_supplier')
+    //         ->where('nama_barang','like',"%".$cari."%")
+    //         ->orWhere('harga','like',"%".$cari."%")
+    //         ->orWhere('nama_supplier','like',"%".$cari."%")
+    //         ->paginate(5),
+    //     ];
+
+
+    //     // mengirim data pegawai ke view index
+    //     return view('layout.barang', $data);
+    // }
 }

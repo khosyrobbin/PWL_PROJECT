@@ -1,34 +1,54 @@
 @extends('layout.template')
+@section('title','Tambah Transaksi')
 
 @section('content')
-<div class="container mt-5">
-    <div class="row justify-content-center align-items-center">
-        <div class="card" style="width: 24rem;">
-            <div class="card-body">
-                @if ($errors->any())
-                <div class="alert alert-danger">
-                    <strong>Whoops!</strong> There were some problems with your input.<br><br>
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
+    <form action="/transaksi/simpan" method="POST" enctype="multipart/form-data">
+        @csrf
+        <div class="content" style="height:600px">
+            <div class="rows">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Tanggal</label>
+                        <input name="tanggal" class="form-control @error('tanggal') is-invalid @enderror">
+                        <div class="text-danger">
+                            @error('tanggal')
+                                Tanggal Salah/Kosong
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Nama Barang</label>
+                        <select name="id_barang" class="form-control @error('id_barang') is-invalid @enderror">
+                            <option value="">--Pilih Barang--</option>
+                            @foreach ($barang as $brg)
+                                <option value="{{$brg->id_barang}}">{{$brg->nama_barang}}</option>
+                            @endforeach
+                        </select>
+                        <div class="text-danger">
+                            @error('id_barang')
+                                Nama Barang Salah/Kosong
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Keterangan</label>
+                        <input name="keterangan" class="form-control @error('keterangan') is-invalid @enderror">
+                        <div class="text-danger">
+                            @error('keterangan')
+                                Keterangan Salah/Kosong
+                            @enderror
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <button class="btn btn-primary btn-sm">Simpan</button>
+                    </div>
+
                 </div>
-            @endif
-            <form method="post" action="{{ route('transaksi.store') }}" id="myForm">
-            @csrf
-                <div class="form-group">
-                    <label for="tanggal">Tanggal</label> 
-                    <input type="tanggal" name="tanggal" class="form-control" id="tanggal" aria-describedby="tanggal" > 
-                </div>
-                <div class="form-group">
-                    <label for="keterangan">Keterangan</label>
-                    <input type="keterangan" name="keterangan" class="form-control" id="keterangan" aria-describedby="keterangan" > 
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
             </div>
         </div>
-    </div>
- </div>
+    </form>
 @endsection
