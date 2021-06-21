@@ -2,7 +2,11 @@
 @section('title','Pembeli')
 
 @section('content')
-<a href="/pembeli/tambah" class="btn btn-primary btn-sm " >Tambah</a> <br>
+    @if (auth()->user()->level==1)
+    @elseif (auth()->user()->level==2)
+    @elseif (auth()->user()->level==3)
+    <a href="/pembeli/tambah" class="btn btn-primary btn-sm " >Tambah</a> <br>
+    @endif
 @if (session('pesan'))
     <div class="alert alert-success alert-dismissible">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>

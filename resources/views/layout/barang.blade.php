@@ -2,7 +2,12 @@
 @section('title','Barang')
 
 @section('content')
-<a href="/barang/tambah" class="btn btn-primary btn-sm " >Tambah</a> <br>
+    @if (auth()->user()->level==1)
+    @elseif (auth()->user()->level==2)
+    <a href="/barang/tambah" class="btn btn-primary btn-sm " >Tambah</a> <br>
+    @elseif (auth()->user()->level==3)
+    @endif
+{{-- <a href="/barang/tambah" class="btn btn-primary btn-sm " >Tambah</a> <br> --}}
 @if (session('pesan'))
     <div class="alert alert-success alert-dismissible">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -27,7 +32,12 @@
                     <th>Harga</th>
                     <th>Stok</th>
                     <th>Supplier</th>
+                    @if (auth()->user()->level==1)
                     <th>ACTION</th>
+                    @elseif (auth()->user()->level==2)
+                    <th>ACTION</th>
+                    @elseif (auth()->user()->level==3)
+                    @endif
                 </tr>
             </thead>
             <tbody class="table">
@@ -41,10 +51,18 @@
                         <td>{{ $data->nama_supplier }}</td>
                         <td>
                             {{-- <a href="" class="btn btn-sm btn-success">Detail</a> --}}
+                            @if (auth()->user()->level==1)
                             <a href="/barang/edit/{{ $data->id_barang }}" class="btn btn-sm btn-warning">Edit</a>
                             <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delete{{ $data->id_barang }}">
                                 DELETE
                             </button>
+                            @elseif (auth()->user()->level==2)
+                            <a href="/barang/edit/{{ $data->id_barang }}" class="btn btn-sm btn-warning">Edit</a>
+                            <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delete{{ $data->id_barang }}">
+                                DELETE
+                            </button>
+                            @elseif (auth()->user()->level==3)
+                            @endif
                         </td>
                     </tr>
                 @endforeach

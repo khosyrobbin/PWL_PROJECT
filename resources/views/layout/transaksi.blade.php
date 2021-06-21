@@ -2,7 +2,13 @@
 @section('title','Transaksi')
 
 @section('content')
-<a href="/transaksi/create" class="btn btn-primary btn-sm " >Tambah</a> <br>
+    @if (auth()->user()->level==1)
+    <a href="/transaksi/print"  target="_blank" class="btn btn-success btn-sm">Print</a> <br>
+    @elseif (auth()->user()->level==2)
+    <a href="/transaksi/print"  target="_blank" class="btn btn-success btn-sm">Print</a> <br>
+    @elseif (auth()->user()->level==3)
+    <a href="/transaksi/create" class="btn btn-primary btn-sm " >Tambah</a>
+    @endif
 @if (session('pesan'))
     <div class="alert alert-success alert-dismissible">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>

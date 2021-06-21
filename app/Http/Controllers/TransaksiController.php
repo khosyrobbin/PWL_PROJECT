@@ -93,6 +93,14 @@ class TransaksiController extends Controller
         return redirect()->route('transaksi')->with('pesan','Data Berhasil Dihapus');
     }
 
+    //print
+    public function print(){
+        $data = [
+            'transaksi' => $this->TransaksiModel->allData(),
+        ];
+        return view('layout.print', $data);
+    }
+
     // Search data
     // public function cari(Request $request){
     //     // menangkap data pencarian

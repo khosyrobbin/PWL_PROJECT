@@ -54,6 +54,8 @@ Route::get('/transaksi/edit/{id_transaksi}', [TransaksiController::class, 'edit'
 Route::post('/transaksi/update/{id_transaksi}', [TransaksiController::class, 'update']);
 Route::get('/transaksi/delete/{id_transaksi}', [TransaksiController::class, 'delete']);
 Route::get('/transaksi/detail/{id_transaksi}', [TransaksiController::class, 'detail']);
+Route::get('/transaksi/print', [TransaksiController::class, 'print']);
+
 // Route::resource('transaksi', TransaksiController::class);
 // Route::get('/transaksi/{id}', [TransaksiController::class, 'indextransak'])->name('indextransak');
 // Route::get('/transaksi', function () {

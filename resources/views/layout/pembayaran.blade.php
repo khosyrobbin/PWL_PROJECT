@@ -2,7 +2,11 @@
 @section('title','Pembayaran')
 
 @section('content')
-<a href="/pembayaran/tambah" class="btn btn-primary btn-sm " >Tambah</a> <br>
+    @if (auth()->user()->level==1)
+    @elseif (auth()->user()->level==2)
+    @elseif (auth()->user()->level==3)
+    <a href="/pembayaran/tambah" class="btn btn-primary btn-sm " >Tambah</a> <br>
+    @endif
 @if (session('pesan'))
     <div class="alert alert-success alert-dismissible">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -27,10 +31,10 @@
                 @foreach ($pembayaran as $data)
                     <tr>
                         <th scope="row">{{ $no++ }}</th>
-                        @foreach ($transaksi as $trs)
+                        {{-- @foreach ($transaksi as $trs)
                             <td>{{ $trs->nama_pembeli }}</td>
-                        @endforeach
-                        {{-- <td>{{ $data->nama_pembeli }}</td> --}}
+                        @endforeach --}}
+                        <td>{{ $data->id_transaksi }}</td>
                         <td>{{ $data->tanggal_bayar }}</td>
                         <td>{{ $data->total_bayar }}</td>
                         <td>
