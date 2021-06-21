@@ -9,7 +9,7 @@
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label>Tanggal</label>
-                        <input name="tanggal" class="form-control @error('tanggal') is-invalid @enderror">
+                        <input name="tanggal" type="date" class="form-control @error('tanggal') is-invalid @enderror">
                         <div class="text-danger">
                             @error('tanggal')
                                 Tanggal Salah/Kosong
