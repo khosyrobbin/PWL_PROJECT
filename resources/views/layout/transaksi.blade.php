@@ -8,6 +8,7 @@
     <a href="/transaksi/print"  target="_blank" class="btn btn-success btn-sm">Print</a> <br>
     @elseif (auth()->user()->level==3)
     <a href="/transaksi/create" class="btn btn-primary btn-sm " >Tambah</a>
+    {{-- <a href="/transaksi/print"  target="_blank" class="btn btn-success btn-sm">Print</a> <br> --}}
     @endif
 @if (session('pesan'))
     <div class="alert alert-success alert-dismissible">

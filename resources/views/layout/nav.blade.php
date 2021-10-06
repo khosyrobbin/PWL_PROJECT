@@ -10,8 +10,8 @@
 
     @elseif (auth()->user()->level==2)
     <li class="{{request()->is('/')?'active': ''}}"><a href="/"><i class="fa fa-home"></i> <span>Home</span></a></li>
-    <li class="{{request()->is('barang')?'active': ''}}"><a href="/barang"><i class="fa fa-user-circle"></i> <span>Data Barang</span></a></li>
     <li class="{{request()->is('supplier')?'active': ''}}"><a href="/supplier"><i class="fa fa-users nav-icon"></i> <span>Data Supplier</span></a></li>
+    <li class="{{request()->is('barang')?'active': ''}}"><a href="/barang"><i class="fa fa-user-circle"></i> <span>Data Barang</span></a></li>
 
     @elseif (auth()->user()->level==3)
     <li class="{{request()->is('/')?'active': ''}}"><a href="/"><i class="fa fa-home"></i> <span>Home</span></a></li>
